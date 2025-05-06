@@ -1,3 +1,40 @@
+body {
+    margin: 0px;
+}
+
+/* COMEÇO HEADER */
+.header {
+    display: flex;
+    background-color: black;
+    height: 110px;
+}
+
+.headerImg {
+    justify-self: flex-start;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.headerButton {
+    display: flex;
+    background-color: black;
+    color: white;
+    width: 120px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border: none !important;
+}
+.navbar>.headerButton:hover {
+    background-color: rgb(104, 37, 11);
+}
+/* FIM HEADER */
+
+
 .simuladorInventario {
     position: relative;
 }
