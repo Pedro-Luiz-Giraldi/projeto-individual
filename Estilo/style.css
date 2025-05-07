@@ -10,17 +10,16 @@ body {
 }
 
 .headerImg {
-    justify-self: flex-start;
+    height: 110px;
 }
 
-.navbar {
+.navbar {   
     display: flex;
     align-items: center;
-    margin: auto;
+    margin-left: 26%;
 }
 
 .headerButton {
-    display: flex;
     background-color: black;
     color: white;
     width: 120px;
@@ -34,7 +33,29 @@ body {
 }
 /* FIM HEADER */
 
+/* COMEÇO BODY */
+.body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+#tituloDarkSouls {
+    width: 796.97px;
+    margin-bottom: 80px;
+}
+
+#bg_jogo {
+    margin-top: 15px;
+    opacity: 0.75;
+}
+
+.jogo {
+    background-image: ;
+}   
+
+/* FIM BODY */
 .simuladorInventario {
     position: relative;
 }
