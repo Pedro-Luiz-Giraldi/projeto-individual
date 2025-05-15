@@ -5,21 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Estilo/style.css">
-    <title>Document</title>
+    <script src="C:\Users\Pedro\Documents\SPTECH\projeto-individual\funcoes.js"></script>
+    <title>Início</title>
 </head>
 
 <body>
     <div class="header">
-        <img class="headerImg"
-            src="https://static.wikia.nocookie.net/darksouls/images/b/be/Bonfire.gif/revision/latest?cb=20170723190546">
         <div class="navbar">
-            <button class="headerButton">Início</button>
-            <button class="headerButton">Cadastro</button>
-            <button class="headerButton">Login</button>
-            <button class="headerButton">Quiz</button>
+            <button class="headerButton" onclick="headerLinks('inicio')">Início</button>
+            <button class="headerButton" onclick="headerLinks('cadastro')">Cadastro</button>
+            <button class="headerButton" id="btn_login">Login</button>
+            <button class="headerButton" id="btn_quiz">Quiz</button>
         </div>
     </div>
-    <div class="body">
+    <div class="corpo">
         <img id="tituloDarkSouls" src="Estilo/img/tituloDarkSouls.png">
 
         <img class="titulo" src="Estilo/img/jogo.png">
@@ -56,10 +55,4 @@
         </div>
     </div>
 </body>
-<script>
-    function selectHeaderButton() {
-
-    }
-</script>
-
 </html>

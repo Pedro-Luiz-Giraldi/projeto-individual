@@ -1,5 +1,6 @@
-body {
-    margin: 0px;
+* {
+    margin: 0%;
+    padding: 0%;
 }
 
 /* COMEÇO HEADER */
@@ -7,16 +8,17 @@ body {
     display: flex;
     background-color: black;
     height: 110px;
-}
-
-.headerImg {
-    height: 110px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid;
+    border-color: rgb(165, 41, 10);
+    margin: auto;
 }
 
 .navbar {   
     display: flex;
     align-items: center;
-    margin-left: 26%;
+    margin: auto;
 }
 
 .headerButton {
@@ -26,7 +28,7 @@ body {
     height: 30px;
     justify-content: center;
     align-items: center;
-    border: none !important;
+    border: none;
 }
 .navbar>.headerButton:hover {
     background-color: rgb(104, 37, 11);
@@ -34,7 +36,7 @@ body {
 /* FIM HEADER */
 
 /* COMEÇO BODY */
-.body {
+.corpo {
     background-color: black;
     display: flex;
     flex-direction: column;
@@ -75,7 +77,6 @@ body {
     margin-bottom: 60px;
 }
 
-
 .container {
     position: absolute;
     background-color: rgb(0, 0, 0, 0.70);
@@ -115,6 +116,36 @@ body {
     text-indent: 70px;
 }
 
+.cadastro {
+    height: calc(100vh - 110px);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    background-color: black;
+    border: solid;
+    border-radius: 12px;
+    border-color: grey;
+    border-width: 3px;
+    width: 35%;
+    height: 60%;
+    color: white;
+}
+
+.campo {
+    display: flex;
+    margin: 1px;
+}
+.campo input {
+    background-color: darkgray;
+    border-radius: 3px;
+}
+
 /* FIM BODY */
 
 /* COMEÇO  */
@@ -135,7 +166,7 @@ body {
 .botaoInventario {
     display: flex;
     background: transparent;
-    border: none !important;
+    border: none;
     flex-grow: 1;
     padding: 0%;
 }
