@@ -12,14 +12,14 @@
 <body>
     <div class="header">
         <div class="navbar">
-            <button class="headerButton" onclick="headerLinks('inicio')">Início</button>
-            <button class="headerButton" onclick="headerLinks('cadastro')">Cadastro</button>
-            <button class="headerButton" onclick="headerLinks('login')">Login</button>
-            <button class="headerButton" onclick="headerLinks('quiz')">Quiz</button>
+            <button class="botao" onclick="headerLinks('inicio')">Início</button>
+            <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
+            <button class="botao" onclick="headerLinks('login')">Login</button>
+            <button class="botao" onclick="headerLinks('quiz')">Quiz</button>
         </div>
     </div>
 
-    <div class="corpo cadastro">
+    <div class="corpo cadastroLogin">
         <div class="card">
             <div class="campo">
                 <label for="ipt_nome">Nome:</label>
@@ -37,19 +37,25 @@
                 <label for="ipt_confirmar_senha">Confirmar Senha:</label>
                 <input type="text" id="ipt_confirmar_senha">
             </div>
+            <div>
+                <label for="solaire">solaire</label>
+                <input type="radio" name="fav_npc" id="solaire">
+        
+                <label for="siegmeyer">siegmeyer</label>
+                <input type="radio" name="fav_npc" id="siegmeyer">
+        
+                <label for="laurentius">laurentius</label>
+                <input type="radio" name="fav_npc" id="laurentius">
+        
+                <label for="andre">andre</label>
+                <input type="radio" name="fav_npc" id="andre">
+            </div>
 
-            <label for="solaire">solaire</label>
-            <input type="radio" name="fav_npc" id="solaire">
-    
-            <label for="siegmeyer">siegmeyer</label>
-            <input type="radio" name="fav_npc" id="siegmeyer">
-    
-            <label for="laurentius">laurentius</label>
-            <input type="radio" name="fav_npc" id="laurentius">
-    
-            <label for="andre">andre</label>
-            <input type="radio" name="fav_npc" id="andre">
+            <button class="botao" id="btnCadastroLogin">Cadastrar</button>
         </div>
+    </div>
+    <div class="footer">
+        <h4>SPTECH - Pedro Luis Santos Giraldi - 2025</h4>
     </div>
 </body>
 

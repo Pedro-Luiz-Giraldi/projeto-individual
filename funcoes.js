@@ -1,14 +1,14 @@
 function headerLinks(btn) {
     if (btn == 'inicio') {
-        location.href = "file:///C:/Users/Pedro/Documents/SPTECH/projeto-individual/index.html"
+        location.href = "index.html"
     }
     if (btn == 'cadastro') {
-        location.href = "file:///C:/Users/Pedro/Documents/SPTECH/projeto-individual/cadastro.html"
+        location.href = "cadastro.html"
     }
     if (btn == 'login') {
-        location.href = "file:///C:/Users/Pedro/Documents/SPTECH/projeto-individual/login.html"
+        location.href = "login.html"
     }
     if (btn == 'quiz') {
-        location.href = "file:///C:/Users/Pedro/Documents/SPTECH/projeto-individual/quiz.html"
+        location.href = "quiz.html"
     }
 }

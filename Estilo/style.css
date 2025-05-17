@@ -7,7 +7,7 @@
 .header {
     display: flex;
     background-color: black;
-    height: 110px;
+    height: 15vh;
     justify-content: center;
     align-items: center;
     border-bottom: solid;
@@ -21,7 +21,7 @@
     margin: auto;
 }
 
-.headerButton {
+.botao {
     background-color: black;
     color: white;
     width: 120px;
@@ -30,7 +30,7 @@
     align-items: center;
     border: none;
 }
-.navbar>.headerButton:hover {
+.botao:hover {
     background-color: rgb(104, 37, 11);
 }
 /* FIM HEADER */
@@ -59,13 +59,13 @@
 #bg_jogo {
     margin-top: 25px;
     opacity: 0.75;
-    width: 1300px;
+    width: 90vw;
 }
 #bg_historia {
     margin-top: 25px;
     opacity: 0.75;
     border-radius: 12px;
-    width: 1300px;
+    width: 90vw;
 }
 
 .jogo {
@@ -116,8 +116,8 @@
     text-indent: 70px;
 }
 
-.cadastro {
-    height: calc(100vh - 110px);
+.cadastroLogin {
+    height: 69vh;
 }
 
 .card {
@@ -139,6 +139,7 @@
 
 .campo {
     display: flex;
+    flex-direction: column;
     margin: 1px;
 }
 .campo input {
@@ -146,7 +147,28 @@
     border-radius: 3px;
 }
 
+#btnCadastroLogin {
+    margin-top: 35px;
+    border: solid;
+    border-color: grey;
+    border-width: 1px;
+    width: 200px;
+}
+
 /* FIM BODY */
+
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    height: 15vh;
+    border-top: solid;
+    border-color: rgb(165, 41, 10);
+    color: white;
+}
+/* FIM FOOTER */
 
 /* COMEÇO  */
 .simuladorInventario {

@@ -12,11 +12,27 @@
 <body>
     <div class="header">
         <div class="navbar">
-            <button class="headerButton" onclick="headerLinks('inicio')">Início</button>
-            <button class="headerButton" onclick="headerLinks('cadastro')">Cadastro</button>
-            <button class="headerButton" onclick="headerLinks('login')">Login</button>
-            <button class="headerButton" onclick="headerLinks('quiz')">Quiz</button>
+            <button class="botao" onclick="headerLinks('inicio')">Início</button>
+            <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
+            <button class="botao" onclick="headerLinks('login')">Login</button>
+            <button class="botao" onclick="headerLinks('quiz')">Quiz</button>
         </div>
+    </div>
+    <div class="corpo cadastroLogin">
+        <div class="card">
+            <div class="campo">
+                <label for="loginEmail">Email:</label>
+                <input type="text" id="loginEmail">
+            </div>
+            <div class="campo">
+                <label for="loginSenha">Senha:</label>
+                <input type="text" id="loginSenha">
+            </div>
+            <button class="botao" id="btnCadastroLogin">Login</button>
+        </div>
+    </div>
+    <div class="footer">
+        <h4>SPTECH - Pedro Luis Santos Giraldi - 2025</h4>
     </div>
 </body>
 
