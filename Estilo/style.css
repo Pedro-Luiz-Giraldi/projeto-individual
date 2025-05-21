@@ -44,6 +44,15 @@
     justify-content: center;
 }
 
+.inicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+}
+
 #tituloDarkSouls {
     width: 796.97px;
     margin-bottom: 80px;
@@ -117,7 +126,7 @@
 }
 
 .cadastroLogin {
-    height: 69vh;
+    height: calc(100vh - 15vh);
 }
 
 .card {
@@ -153,6 +162,11 @@
     border-color: grey;
     border-width: 1px;
     width: 200px;
+}
+
+#select_npc {
+    display: flex;
+    flex-direction: column;
 }
 
 /* FIM BODY */

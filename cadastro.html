@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Estilo/style.css">
-    <script src="C:\Users\Pedro\Documents\SPTECH\projeto-individual\funcoes.js"></script>
+    <script src="funcoes.js"></script>
     <title>Cadastro</title>
 </head>
 
@@ -37,18 +37,27 @@
                 <label for="ipt_confirmar_senha">Confirmar Senha:</label>
                 <input type="text" id="ipt_confirmar_senha">
             </div>
-            <div>
-                <label for="solaire">solaire</label>
-                <input type="radio" name="fav_npc" id="solaire" value="Solaire">
+            <div id="select_npc">
+                <p>Personagem Favorito:</p>
+                <div>
+                    <label for="solaire">solaire</label>
+                    <input type="radio" name="fav_npc" id="solaire" value="Solaire">
+                </div>
+                
+                <div>
+                    <label for="siegmeyer">siegmeyer</label>
+                    <input type="radio" name="fav_npc" id="siegmeyer" value="Siegmeyer">
+                </div>
         
-                <label for="siegmeyer">siegmeyer</label>
-                <input type="radio" name="fav_npc" id="siegmeyer" value="Siegmeyer">
+                <div>
+                    <label for="laurentius">laurentius</label>
+                    <input type="radio" name="fav_npc" id="laurentius" value="laurentius">
+                </div>
         
-                <label for="laurentius">laurentius</label>
-                <input type="radio" name="fav_npc" id="laurentius" value="laurentius">
-        
-                <label for="andre">andre</label>
-                <input type="radio" name="fav_npc" id="andre" value="Andre">
+                <div>
+                    <label for="andre">andre</label>
+                    <input type="radio" name="fav_npc" id="andre" value="Andre">
+                </div>
             </div>
 
             <button class="botao" id="btnCadastroLogin">Cadastrar</button>
