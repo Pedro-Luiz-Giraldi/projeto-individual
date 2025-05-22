@@ -11,4 +11,7 @@ function headerLinks(btn) {
     if (btn == 'quiz') {
         location.href = "quiz.html"
     }
+    if (btn == 'dashboard') {
+        location.href = "dashboard.html"
+    }
 }
