@@ -19,63 +19,64 @@
 <body>
   <!--header inicio-->
   <div class="header">
-        <div class="navbar">
-            <button class="botao" onclick="headerLinks('inicio')">Início</button>
-            <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
-            <button class="botao" onclick="headerLinks('login')">Login</button>
-            <button class="botao" onclick="headerLinks('quiz')">Quiz</button>
-            <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
-        </div>
+    <div class="navbar">
+      <button class="botao" onclick="headerLinks('inicio')">Início</button>
+      <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
+      <button class="botao" onclick="headerLinks('login')">Login</button>
+      <button class="botao" onclick="headerLinks('quiz')">Quiz</button>
+      <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
     </div>
+  </div>
   <!--header fim-->
 
   <div class="corpo cadastroLogin">
-        <div class="card">
-            <div class="campo">
-                <label for="nome_input">Nome:</label>
-                <input type="text" id="nome_input">
-            </div>
-            <div class="campo">
-                <label for="email_input">Email:</label>
-                <input type="text" id="email_input">
-            </div>
-            <div class="campo">
-                <label for="senha_input">Senha:</label>
-                <input type="text" id="senha_input">
-            </div>
-            <div class="campo">
-                <label for="confirmacao_senha_input">Confirmar Senha:</label>
-                <input type="text" id="confirmacao_senha_input">
-            </div>
-            <div>
-                <label for="solaire">solaire</label>
-                <input type="radio" name="fav_npc" id="solaire" value="Solaire">
-        
-                <label for="siegmeyer">siegmeyer</label>
-                <input type="radio" name="fav_npc" id="siegmeyer" value="Siegmeyer">
-        
-                <label for="laurentius">laurentius</label>
-                <input type="radio" name="fav_npc" id="laurentius" value="Laurentius">
-        
-                <label for="andre">andre</label>
-                <input type="radio" name="fav_npc" id="andre" value="Andre">
-            </div>
-
-            <button class="botao" id="btnCadastroLogin" onclick="cadastrar()">Cadastrar</button>
-        </div>  
+    <div class="card">
+      <div class="campo">
+        <label for="nome_input">Nome:</label>
+        <input type="text" id="nome_input">
       </div>
-
-      <div id="cardErro">
-        <div id="mensagem_erro"></div>
+      <div class="campo">
+        <label for="email_input">Email:</label>
+        <input type="text" id="email_input">
       </div>
+      <div class="campo">
+        <label for="senha_input">Senha:</label>
+        <input type="text" id="senha_input">
+      </div>
+      <div class="campo">
+        <label for="confirmacao_senha_input">Confirmar Senha:</label>
+        <input type="text" id="confirmacao_senha_input">
+      </div>
+      <div>
+        <label for="solaire">solaire</label>
+        <input type="radio" name="fav_npc" id="solaire" value="Solaire">
 
-      <div id="div_aguardar"></div>
-      <div id="div_erros_login"></div>
+        <label for="siegmeyer">siegmeyer</label>
+        <input type="radio" name="fav_npc" id="siegmeyer" value="Siegmeyer">
+
+        <label for="laurentius">laurentius</label>
+        <input type="radio" name="fav_npc" id="laurentius" value="Laurentius">
+
+        <label for="andre">andre</label>
+        <input type="radio" name="fav_npc" id="andre" value="Andre">
+      </div>
+      <button class="botao" id="btnCadastroLogin" onclick="cadastrar()">Cadastrar</button>
+
+      <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
+    </div>
+  </div>
+
+  <div id="cardErro">
+    <div id="mensagem_erro"></div>
+  </div>
+
+  <div id="div_aguardar"></div>
+  <div id="div_erros_login"></div>
 
   <!--footer inicio-->
   <div class="footer">
-        <h4>SPTECH - Pedro Luis Santos Giraldi - 2025</h4>
-    </div>
+    <h4>SPTECH - Pedro Luis Santos Giraldi - 2025</h4>
+  </div>
   <!--footer fim-->
 </body>
 
@@ -87,7 +88,7 @@
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
-    // aguardar();
+    aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -104,7 +105,7 @@
     } else if (document.getElementById('andre').checked) {
       var npcVar = andre.value
     }
- 
+
     //var codigoVar = codigo_input.value;
     var idEmpresaVincular
 
@@ -156,10 +157,6 @@
       }),
     })
       .then(function (resposta) {
-        console.log('deu erro aqui 153');
-        
-        console.log("resposta: ", resposta);
-
         if (resposta.ok) {
           cardErro.style.display = "block";
 

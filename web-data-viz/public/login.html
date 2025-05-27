@@ -31,7 +31,6 @@
         </div>
     </div>
 
-
     <div class="corpo cadastroLogin">
         <div class="card">
             <div class="campo">
@@ -43,14 +42,16 @@
                 <input type="text" id="senha_input">
             </div>
             <button class="botao" id="btnCadastroLogin" onclick="entrar()">Login</button>
+
+            <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
         </div>
     </div>
 
     <div id="cardErro">
-          <div id="mensagem_erro"></div>
+        <div id="mensagem_erro"></div>
     </div>
 
-    <div id="div_aguardar"></div>
+
     <div id="div_erros_login"></div>
 
     <div class="footer">
@@ -107,7 +108,7 @@
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

@@ -1,6 +1,6 @@
 var database = require("../database/config")
 
-function obterDados() {
+function obterNpc() {
     var instrucao = `
         SELECT fav_npc FROM usuario;
     `;
@@ -9,5 +9,5 @@ function obterDados() {
 }
 
 module.exports = {
-    obterDados
+    obterNpc
 }
