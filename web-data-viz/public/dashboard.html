@@ -3,19 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exemplo de como Plotar Gráficos</title>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/funcoes.js"></script>
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body onload="obterDados()"> <!-- Chamando a função obterDados ao carregar a página -->
   
 <!-- Título para o gráfico de linhas -->
-Gráfico de linhas
+<div class="header">
+     <div class="navbar">
+         <button class="botao" onclick="headerLinks('inicio')">Início</button>
+         <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
+         <button class="botao" onclick="headerLinks('login')">Login</button>
+         <button class="botao" onclick="headerLinks('forum')">Fórum</button>
+         <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
+     </div>
+ </div>
+
 <div>
   <!-- Elemento canvas onde o gráfico de linha será desenhado -->
-  <canvas id="linha"></canvas>
-  <!-- Elemento canvas onde o gráfico de barra será desenhado -->
-  <canvas id="barra"></canvas>
+  <canvas id="pizza"></canvas>
 </div>
 
 </body>
@@ -41,32 +50,6 @@ function obterDados(){
   .catch(function(err){
     console.log(err);
   })
-
-  // Como eu não configurei as rotas, eu criei um array com os dados para simular a obtenção dos dados
-//   var dados = [{
-//     jogador:'Endrick',
-//     votos: 10
-//   },
-//   {
-//     jogador:'João',
-//     votos: 5
-//   },
-//   {
-//     jogador:'Maria',
-//     votos: 15
-//   },
-//   {
-//     jogador:'José',
-//     votos: 20
-//   },
-//   {
-//     jogador:'Pedro',
-//     votos: 25
-//   },
-//   {
-//     jogador:'Ana',
-//     votos: 30
-//   }]
 
   // Chamando a função para plotar o gráfico de linha com os dados
 //   plotarGraficoLinha(dados);
@@ -103,7 +86,7 @@ function plotarGraficoLinha(dados){
   }
 
   // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('linha').getContext('2d');
+  var ctx = document.getElementById('pizza').getContext('2d');
   // Criando o gráfico de linha usando o Chart.js
   var myChart = new Chart(ctx, {
       type: 'pie', // Tipo de gráfico: linha

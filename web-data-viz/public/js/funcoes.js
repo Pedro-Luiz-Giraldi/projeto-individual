@@ -8,8 +8,8 @@ function headerLinks(btn) {
     if (btn == 'login') {
         location.href = "login.html"
     }
-    if (btn == 'quiz') {
-        location.href = "quiz.html"
+    if (btn == 'forum') {
+        location.href = "forum.html"
     }
     if (btn == 'dashboard') {
         location.href = "dashboard.html"

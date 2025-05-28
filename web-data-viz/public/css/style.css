@@ -15,7 +15,7 @@
     margin: auto;
 }
 
-.navbar {   
+.navbar {
     display: flex;
     align-items: center;
     margin: auto;
@@ -30,9 +30,11 @@
     align-items: center;
     border: none;
 }
+
 .botao:hover {
     background-color: rgb(104, 37, 11);
 }
+
 /* FIM HEADER */
 
 /* COMEÇO BODY */
@@ -51,6 +53,7 @@
     margin-top: 50px;
     margin-bottom: 90px;
 }
+
 .titulo {
     width: 700px;
 }
@@ -61,6 +64,7 @@
     opacity: 0.75;
     width: 90vw;
 }
+
 #bg_historia {
     margin-top: 25px;
     opacity: 0.75;
@@ -71,7 +75,8 @@
 .jogo {
     position: relative;
     margin-bottom: 60px;
-}   
+}
+
 .historia {
     position: relative;
     margin-bottom: 60px;
@@ -111,10 +116,12 @@
 
     text-align: center;
 }
-.paragrafo{
+
+.paragrafo {
     text-align: justify;
     text-indent: 70px;
 }
+
 /*  */
 .cadastroLogin {
     height: 69vh;
@@ -143,6 +150,7 @@
     flex-direction: column;
     margin: 1px;
 }
+
 .campo input {
     background-color: darkgray;
     border-radius: 3px;
@@ -155,6 +163,7 @@
     border-width: 1px;
     width: 200px;
 }
+
 /*  */
 
 #div_aguardar {
@@ -166,6 +175,57 @@
     width: 30%;
     height: auto;
 }
+
+/*  */
+.corpo_forum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    position: relative;
+    color: white;
+}
+
+
+
+.escrever_forum {
+    width: fit-content;
+    margin: 2%;
+}
+
+#ipt_comentario {
+    width: 40vw;
+    height: 20vh;
+    margin: 1%;
+}
+
+.container_comentarios {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 80vw;
+    padding: 2%;
+    color: white;
+}
+.container_comentarios select {
+    width: 15%;
+    align-self: flex-end;
+}
+
+.comentario {
+    color: white;
+    text-align: justify;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: solid;
+    border-width: 2px;
+    height: fit-content;
+}
+
+/*  */
 
 /* FIM BODY */
 
@@ -180,6 +240,7 @@
     border-color: rgb(165, 41, 10);
     color: white;
 }
+
 /* FIM FOOTER */
 
 /* COMEÇO  */

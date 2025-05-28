@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="js\funcoes.js"></script>
+    <title>Fórum</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="navbar">
+            <button class="botao" onclick="headerLinks('inicio')">Início</button>
+            <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
+            <button class="botao" onclick="headerLinks('login')">Login</button>
+            <button class="botao" onclick="headerLinks('forum')">Fórum</button>
+            <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
+        </div>
+    </div>
+
+    <div class="corpo_forum">
+        <h1>Fórum</h1>
+
+        <div class="container_comentarios">
+            <select name="filto_comentarios" id="ipt_filtro">
+                <option value="*">Todos</option>
+                <option value="builds">Builds</option>
+                <option value="challangeruns">Challenge runs</option>
+                <option value="historia">História/Teorias</option>
+                <option value="fashion">Fashion Souls</option>
+            </select>
+
+            <div class="comentario">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus consequatur laboriosam modi accusamus
+                    iure vitae ipsam, alias ipsum sequi, eius sunt corrupti, hic itaque animi porro quaerat a
+                    asperiores! Laboriosam.</p>
+            </div>
+        </div>
+        <div class="card escrever_forum">
+            <b>Escrever Mensagem</b>
+            <select name="filto_comentarios_cadastrar" id="ipt_categoria">
+                <option value="">Categoria</option>
+                <option value="builds">Builds</option>
+                <option value="challangeruns">Challenge runs</option>
+                <option value="historia">História/Teorias</option>
+                <option value="fashion">Fashion Souls</option>
+            </select>
+            <textarea name="text" id="ipt_comentario"></textarea>
+            <button onclick="salvarComentario()" class="botao" id="btnCadastroLogin">Enviar</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h4>SPTECH - Pedro Luis Santos Giraldi - 2025</h4>
+    </div>
+</body>
+<script>
+    function salvarComentario() {
+        var forum = 
+        [{
+            comentario: ipt_comentario.value,
+            categoria: ipt_categoria.value,
+        }]
+        var usuario = sessionStorage.ID_Usuario            
+    }
+</script>
+</html>
