@@ -20,3 +20,7 @@ create table forum (
 );
 
 select * from usuario;
+select * from forum;
+
+-- truncate table forum;
+-- truncate table usuario;

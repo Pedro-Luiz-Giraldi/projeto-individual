@@ -213,6 +213,10 @@
     width: 15%;
     align-self: flex-end;
 }
+.container_comentarios button {
+    width: 15%;
+    align-self: flex-end;
+}
 
 .comentario {
     color: white;

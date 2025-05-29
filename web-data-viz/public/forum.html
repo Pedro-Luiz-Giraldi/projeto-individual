@@ -23,7 +23,7 @@
     <div class="corpo_forum">
         <h1>Fórum</h1>
 
-        <div class="container_comentarios">
+        <div class="container_comentarios" id="container_comentarios">
             <select name="filto_comentarios" id="ipt_filtro">
                 <option value="*">Todos</option>
                 <option value="builds">Builds</option>
@@ -31,6 +31,9 @@
                 <option value="historia">História/Teorias</option>
                 <option value="fashion">Fashion Souls</option>
             </select>
+
+            <button onclick="filtrarComentarios()">Filtrar</button>
+
 
             <div class="comentario">
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus consequatur laboriosam modi accusamus
@@ -40,8 +43,8 @@
         </div>
         <div class="card escrever_forum">
             <b>Escrever Mensagem</b>
-            <select name="filto_comentarios_cadastrar" id="ipt_categoria">
-                <option value="">Categoria</option>
+            <select name="categoria_comentario" id="ipt_categoria">
+                <option value="#">Categoria</option>
                 <option value="builds">Builds</option>
                 <option value="challangeruns">Challenge runs</option>
                 <option value="historia">História/Teorias</option>
@@ -58,12 +61,74 @@
 </body>
 <script>
     function salvarComentario() {
-        var forum = 
-        [{
-            comentario: ipt_comentario.value,
-            categoria: ipt_categoria.value,
-        }]
-        var usuario = sessionStorage.ID_Usuario            
+        var forum =
+            [{
+                comentario: ipt_comentario.value,
+                categoria: ipt_categoria.value,
+            }]
+        var usuario = sessionStorage.ID_USUARIO
+
+        fetch("/forum/salvar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                comentarioServer: forum[0].comentario,
+                categoriaServer: forum[0].categoria,
+                usuarioServer: usuario
+                // idEmpresaVincularServer: idEmpresaVincular
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+
+                    // mensagem_erro.innerHTML =
+                    //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    // limparFormulario();
+                    // finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar postar comentario!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+
+    function filtrarComentarios() {
+        var filtroServer = ipt_filtro.value
+
+        fetch("/forum/exibir/" + filtroServer)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+
+                exibirComentarios(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
+
+    function exibirComentarios(data) {
+        let div_comentario = document.getElementById("container_comentarios")
+
+        for (let i = 0;i < data.length; i++) {
+            console.log('to no for');
+            
+            div_comentario.innerHTML += `<div class="comentario">
+                                        ${data[i].comentario}
+                                        </div>`
+        }
+
     }
 </script>
+
 </html>

@@ -1,7 +1,7 @@
 var forumModel = require("../models/forumModel");
 
 function exibir(req, res) {
-    var filtro = req.body.ipt_filtro
+    var filtro = req.params.filtroServer
 
     forumModel.exibir(filtro).then(function(resultado){
         // precisamos informar que o resultado voltará para o front-end como uma resposta em json
@@ -12,17 +12,25 @@ function exibir(req, res) {
 }
 
 function salvar(req, res) {
-    var comentario = req.body.ipt_comentario;
+    var comentario = req.body.comentarioServer;
+    var categoria = req.body.categoriaServer;
+    var usuario = req.body.usuarioServer;
 
-    if (comentario == undefined || comentario == '') {
-        res.status(400).send("Seu comentário está indefinido!");
+    if (comentario == undefined || 
+        comentario == '' || 
+        categoria == undefined || 
+        categoria == '#' ||
+        usuario == undefined ||
+        usuario == '' ) {
+        res.status(400).send("Seu comentário ou categoria está indefinida!");
+    } else {
+        forumModel.salvar(comentario, categoria, usuario).then(function(resposta){
+            res.status(200).send("Comentário salvo com sucesso");
+        }).catch(function(erro){
+            res.status(500).json(erro.sqlMessage);
+        })
     }
 
-    forumModel.salvar(comentario).then(function(resposta){
-        res.status(200).send("Comentário salvo com sucesso");
-    }).catch(function(erro){
-        res.status(500).json(erro.sqlMessage);
-    })
 }
 
 module.exports = {

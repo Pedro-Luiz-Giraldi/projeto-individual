@@ -8,9 +8,9 @@ router.post("/salvar", function (req, res) {
     forumController.salvar(req, res);
 });
 
-router.get("/exibir", function (req, res) {
+router.get("/exibir/:filtroServer", function (req, res) {
     // função a ser chamada quando acessar /carros/exibir
-    carroController.exibir(req, res);
+    forumController.exibir(req, res);
 });
 
 module.exports = router;
