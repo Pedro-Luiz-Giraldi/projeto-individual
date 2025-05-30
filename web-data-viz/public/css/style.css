@@ -1,13 +1,28 @@
 * {
     margin: 0%;
     padding: 0%;
+    font-family: "AGaramondPro";
+    scrollbar-width: none;
 }
+
+@font-face {
+    font-family: "AGaramondPro";
+    src: url(../assets/AGaramondPro-Regular.otf);
+}
+
+:root {
+    --tamanho-header: 15vh;
+    --tamanho-footer: 15vh;
+    --tamanho-inteiro: calc(100vh - var(--tamanho-header) - var(--tamanho-footer));
+    --tamanho-semfooter: calc(100vh - var(--tamanho-header));
+}
+
 
 /* COMEÇO HEADER */
 .header {
     display: flex;
     background-color: black;
-    height: 15vh;
+    height: var(--tamanho-header);
     justify-content: center;
     align-items: center;
     border-bottom: solid;
@@ -124,7 +139,7 @@
 
 /*  */
 .cadastroLogin {
-    height: 69vh;
+    height: var(--tamanho-inteiro);
 }
 
 .card {
@@ -172,7 +187,7 @@
     right: 0;
     top: 0;
     border-radius: 15px;
-    width: 30%;
+    width: 12vw;
     height: auto;
 }
 
@@ -184,14 +199,19 @@
     background-color: black;
     position: relative;
     color: white;
+    font-size: 30px;
 }
-
-
 
 .escrever_forum {
+    position: relative;
     width: fit-content;
     margin: 2%;
+    padding: 4%;
 }
+.escrever_forum>img {
+    width: 12vw !important;
+}
+
 
 #ipt_comentario {
     width: 40vw;
@@ -208,6 +228,9 @@
     width: 80vw;
     padding: 2%;
     color: white;
+    border: solid;
+    border-width: 2px;
+    border-color: rgb(61, 61, 61);
 }
 .container_comentarios select {
     width: 15%;
@@ -218,18 +241,33 @@
     align-self: flex-end;
 }
 
+#container_comentarios {
+    font-weight: bold;
+}
+
 .comentario {
-    color: white;
     text-align: justify;
     padding: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
     border: solid;
     border-width: 2px;
+    border-color: rgb(251, 130, 0);
+    color: black;
+    text-shadow: -2px 0 rgb(255, 207, 47), 0 2px rgb(255, 207, 47), 2px 0 rgb(255, 207, 47), 0 -2px rgb(255, 207, 47);
     height: fit-content;
 }
 
-/*  */
+/* COMEÇO DASHBOARD */
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    color: white; 
+    height: var(--tamanho-semfooter);
+}
 
 /* FIM BODY */
 
@@ -239,7 +277,7 @@
     justify-content: center;
     align-items: center;
     background-color: black;
-    height: 15vh;
+    height: var(--tamanho-footer);
     border-top: solid;
     border-color: rgb(165, 41, 10);
     color: white;

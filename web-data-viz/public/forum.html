@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css" />
     <script src="js\funcoes.js"></script>
+    <script src="js\sessao.js"></script>
     <title>Fórum</title>
 </head>
 
-<body>
+<body onload="filtrarComentarios()">
     <div class="header">
         <div class="navbar">
             <button class="botao" onclick="headerLinks('inicio')">Início</button>
@@ -23,7 +24,7 @@
     <div class="corpo_forum">
         <h1>Fórum</h1>
 
-        <div class="container_comentarios" id="container_comentarios">
+        <div class="container_comentarios">
             <select name="filto_comentarios" id="ipt_filtro">
                 <option value="*">Todos</option>
                 <option value="builds">Builds</option>
@@ -31,14 +32,18 @@
                 <option value="historia">História/Teorias</option>
                 <option value="fashion">Fashion Souls</option>
             </select>
-
+    
             <button onclick="filtrarComentarios()">Filtrar</button>
 
-
-            <div class="comentario">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus consequatur laboriosam modi accusamus
-                    iure vitae ipsam, alias ipsum sequi, eius sunt corrupti, hic itaque animi porro quaerat a
-                    asperiores! Laboriosam.</p>
+            <div id="container_comentarios">
+                <div class="comentario paragrafo">
+                    Dark Souls: Prepare to Die Edition, é o primeiro jogo da série dark souls, sendo lançado em 2011 para
+                PlayStation 3 e Xbox360, produzido pela Fromsoftware e sob direção de Hidetaka Miyazaki. O jogo segue o
+                estilo de RPG de ação e foi um dos fundadores do gênero “Soulslike”, e se tornaria um dos jogos mais
+                populares e importantes para o gênero. Desde o lançamento, Dark Souls foi reconhecido por sua
+                ambientação em um mundo medieval sombrio, história misteriosa, design do mundo e, principalmente, por
+                sua dificuldade
+                </div>
             </div>
         </div>
         <div class="card escrever_forum">
@@ -50,6 +55,7 @@
                 <option value="historia">História/Teorias</option>
                 <option value="fashion">Fashion Souls</option>
             </select>
+            <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
             <textarea name="text" id="ipt_comentario"></textarea>
             <button onclick="salvarComentario()" class="botao" id="btnCadastroLogin">Enviar</button>
         </div>
@@ -61,6 +67,8 @@
 </body>
 <script>
     function salvarComentario() {
+        aguardar() 
+
         var forum =
             [{
                 comentario: ipt_comentario.value,
@@ -84,23 +92,29 @@
         })
             .then(function (resposta) {
                 if (resposta.ok) {
+                    console.log('to no resposta.ok');
+                    
+                    limparFormulario();
 
-                    // mensagem_erro.innerHTML =
-                    //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                    filtrarComentarios();
+                    
+                    setTimeout(finalizarAguardar, 1500);
 
-                    // limparFormulario();
-                    // finalizarAguardar();
+
                 } else {
                     throw "Houve um erro ao tentar postar comentario!";
                 }
             })
             .catch(function (resposta) {
+                setTimeout(finalizarAguardar(), 2000);
                 console.log(`#ERRO: ${resposta}`);
             });
     }
 
 
-    function filtrarComentarios() {
+    function filtrarComentarios(filtroServer) {
+        document.getElementById("container_comentarios").innerHTML = ''
+
         var filtroServer = ipt_filtro.value
 
         fetch("/forum/exibir/" + filtroServer)
@@ -128,6 +142,10 @@
                                         </div>`
         }
 
+    }
+
+    function limparFormulario() {
+        document.getElementById('ipt_comentario').value = ''
     }
 </script>
 

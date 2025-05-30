@@ -22,9 +22,11 @@
      </div>
  </div>
 
-<div>
-  <!-- Elemento canvas onde o gráfico de linha será desenhado -->
-  <canvas id="pizza"></canvas>
+<div class="dashboard">
+  <div id="popularidade">
+    <h1>Popularidade em Lordran</h1>
+    <canvas id="graf_npcFavorito"></canvas>
+  </div>
 </div>
 
 </body>
@@ -42,7 +44,7 @@ function obterDados(){
   })
   .then(function(data){
       console.log(data);
-    plotarGraficoLinha(data);
+    plotarGraficoPizza(data);
     // plotarGraficoBarra(data);
 
     
@@ -52,20 +54,21 @@ function obterDados(){
   })
 
   // Chamando a função para plotar o gráfico de linha com os dados
-//   plotarGraficoLinha(dados);
+//   plotarGraficoPizza(dados);
   // Chamando a função para plotar o gráfico de barra com os dados
 //   plotarGraficoBarra(dados)
 }
 
 // Função para plotar o gráfico de linha
-function plotarGraficoLinha(dados){
+function plotarGraficoPizza(dados){
   
 //   // Separando os rótulos (labels) e os dados dos votos
   var votos = {
     sol: 0,
     sie: 0,
     lau: 0,
-    and: 0
+    and: 0,
+    pat: 0
   };
 //   var jogadores = [];
 
@@ -77,16 +80,17 @@ function plotarGraficoLinha(dados){
         votos.sol++
     } else if (dados[i].fav_npc == 'Siegmeyer') {
         votos.sie++
-    } else if (dados[i].fav_npc == 'laurentius') {
+    } else if (dados[i].fav_npc == 'Laurentius') {
         votos.lau++
     } else if (dados[i].fav_npc == 'Andre') {
         votos.and++
-    }
-    // jogadores.push(dados[i].jogador);
+    } else if (dados[i].fav_npc == 'Patches') {
+        votos.pat++
+    } 
   }
 
   // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('pizza').getContext('2d');
+  var ctx = document.getElementById('graf_npcFavorito').getContext('2d');
   // Criando o gráfico de linha usando o Chart.js
   var myChart = new Chart(ctx, {
       type: 'pie', // Tipo de gráfico: linha
@@ -95,20 +99,22 @@ function plotarGraficoLinha(dados){
                 'Solaire',
                 'Siegmeyer',
                 'Laurentius',
-                'Andre'
+                'Andre',
+                'Patches'
             ],
                  // Rótulos no eixo X
           datasets: [{ 
               label: 'Votos', // Nome do conjunto de dados
-              data: [votos.sol, votos.sie, votos.lau, votos.and], // Dados dos votos
+              data: [votos.sol, votos.sie, votos.lau, votos.and, votos.pat], // Dados dos votos
               backgroundColor: [
-                  'rgb(255, 205, 86)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 99, 132)',
-                    'rgb(55, 237, 135)' // Cor de fundo das linhas
+                  'rgb(255, 255, 0)',
+                  'rgb(130, 130, 130)',
+                  'rgb(255, 106, 0)',
+                  'rgb(12, 117, 0)',
+                  'rgb(43, 46, 16)' // Cor de fundo das linhas
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)', // Cor da borda das linhas
+                  'rgba(0, 0, 0, 0)', // Cor da borda das linhas
               ],
               borderWidth: 1 // Largura da borda das linhas
           }]

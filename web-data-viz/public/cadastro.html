@@ -48,17 +48,20 @@
         <input type="text" id="confirmacao_senha_input">
       </div>
       <div>
-        <label for="solaire">solaire</label>
+        <label for="solaire">Solaire</label>
         <input type="radio" name="fav_npc" id="solaire" value="Solaire">
 
-        <label for="siegmeyer">siegmeyer</label>
+        <label for="siegmeyer">Siegmeyer</label>
         <input type="radio" name="fav_npc" id="siegmeyer" value="Siegmeyer">
 
-        <label for="laurentius">laurentius</label>
+        <label for="laurentius">Laurentius</label>
         <input type="radio" name="fav_npc" id="laurentius" value="Laurentius">
 
-        <label for="andre">andre</label>
+        <label for="andre">Andre</label>
         <input type="radio" name="fav_npc" id="andre" value="Andre">
+
+        <label for="patches">Patches</label>
+        <input type="radio" name="fav_npc" id="patches" value="Patches">
       </div>
       <button class="botao" id="btnCadastroLogin" onclick="cadastrar()">Cadastrar</button>
 
@@ -104,10 +107,10 @@
       var npcVar = laurentius.value
     } else if (document.getElementById('andre').checked) {
       var npcVar = andre.value
+    } else if (document.getElementById('patches').checked) {
+      var npcVar = patches.value
     }
 
-    //var codigoVar = codigo_input.value;
-    var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
