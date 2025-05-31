@@ -10,7 +10,7 @@
     <title>Fórum</title>
 </head>
 
-<body onload="filtrarComentarios()">
+<body onload="filtrarComentarios(), validarSessao('forum')">
     <div class="header">
         <div class="navbar">
             <button class="botao" onclick="headerLinks('inicio')">Início</button>
@@ -20,9 +20,16 @@
             <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
         </div>
     </div>
+    
+    <div id="cardErroLogin">
+        <div id="mensagem_erro_login" class="card">
+            <img src="https://i.imgur.com/MbjMPr6.gif">
+        </div>
+    </div>
 
-    <div class="corpo_forum">
+    <div class="corpo_forum" id="corpo_forum">
         <h1>Fórum</h1>
+
 
         <div class="container_comentarios">
             <select name="filto_comentarios" id="ipt_filtro">
@@ -32,24 +39,27 @@
                 <option value="historia">História/Teorias</option>
                 <option value="fashion">Fashion Souls</option>
             </select>
-    
+
             <button onclick="filtrarComentarios()">Filtrar</button>
 
             <div id="container_comentarios">
                 <div class="comentario paragrafo">
-                    Dark Souls: Prepare to Die Edition, é o primeiro jogo da série dark souls, sendo lançado em 2011 para
-                PlayStation 3 e Xbox360, produzido pela Fromsoftware e sob direção de Hidetaka Miyazaki. O jogo segue o
-                estilo de RPG de ação e foi um dos fundadores do gênero “Soulslike”, e se tornaria um dos jogos mais
-                populares e importantes para o gênero. Desde o lançamento, Dark Souls foi reconhecido por sua
-                ambientação em um mundo medieval sombrio, história misteriosa, design do mundo e, principalmente, por
-                sua dificuldade
+                    Dark Souls: Prepare to Die Edition, é o primeiro jogo da série dark souls, sendo lançado em 2011
+                    para
+                    PlayStation 3 e Xbox360, produzido pela Fromsoftware e sob direção de Hidetaka Miyazaki. O jogo
+                    segue o
+                    estilo de RPG de ação e foi um dos fundadores do gênero “Soulslike”, e se tornaria um dos jogos mais
+                    populares e importantes para o gênero. Desde o lançamento, Dark Souls foi reconhecido por sua
+                    ambientação em um mundo medieval sombrio, história misteriosa, design do mundo e, principalmente,
+                    por
+                    sua dificuldade
                 </div>
             </div>
         </div>
         <div class="card escrever_forum">
             <b>Escrever Mensagem</b>
             <select name="categoria_comentario" id="ipt_categoria">
-                <option value="#">Categoria</option>
+                <option value="">Categoria</option>
                 <option value="builds">Builds</option>
                 <option value="challangeruns">Challenge runs</option>
                 <option value="historia">História/Teorias</option>
@@ -58,6 +68,10 @@
             <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
             <textarea name="text" id="ipt_comentario"></textarea>
             <button onclick="salvarComentario()" class="botao" id="btnCadastroLogin">Enviar</button>
+
+            <div id="cardErro">
+                <div id="mensagem_erro"></div>
+            </div>
         </div>
     </div>
 
@@ -66,8 +80,9 @@
     </div>
 </body>
 <script>
+    cardErroLogin.style.display = 'none'
     function salvarComentario() {
-        aguardar() 
+        aguardar()
 
         var forum =
             [{
@@ -75,6 +90,21 @@
                 categoria: ipt_categoria.value,
             }]
         var usuario = sessionStorage.ID_USUARIO
+
+        if (
+            forum[0].comentario == '' ||
+            forum[0].categoria == '' ||
+            usuario == undefined
+        ) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "Preencha todos os campos!";
+
+            finalizarAguardar()
+            return false;
+        } else {
+            sumirMensagem()
+        }
 
         fetch("/forum/salvar", {
             method: "POST",
@@ -95,12 +125,10 @@
                     console.log('to no resposta.ok');
                     
                     limparFormulario();
-
-                    filtrarComentarios();
                     
-                    setTimeout(finalizarAguardar, 1500);
-
-
+                    setTimeout(finalizarAguardar, 1000);
+                    
+                    setTimeout(filtrarComentarios, 1001);
                 } else {
                     throw "Houve um erro ao tentar postar comentario!";
                 }
@@ -134,9 +162,7 @@
     function exibirComentarios(data) {
         let div_comentario = document.getElementById("container_comentarios")
 
-        for (let i = 0;i < data.length; i++) {
-            console.log('to no for');
-            
+        for (let i = 0; i < data.length; i++) {
             div_comentario.innerHTML += `<div class="comentario">
                                         ${data[i].comentario}
                                         </div>`
@@ -146,6 +172,10 @@
 
     function limparFormulario() {
         document.getElementById('ipt_comentario').value = ''
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
     }
 </script>
 

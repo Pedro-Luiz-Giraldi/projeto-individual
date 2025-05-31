@@ -29,7 +29,7 @@
   </div>
   <!--header fim-->
 
-  <div class="corpo cadastroLogin">
+  <div class="cadastroLogin">
     <div class="card">
       <div class="campo">
         <label for="nome_input">Nome:</label>
@@ -66,12 +66,13 @@
       <button class="botao" id="btnCadastroLogin" onclick="cadastrar()">Cadastrar</button>
 
       <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
+      
+      <div id="cardErro">
+        <div id="mensagem_erro"></div>
+      </div>
     </div>
   </div>
 
-  <div id="cardErro">
-    <div id="mensagem_erro"></div>
-  </div>
 
   <div id="div_aguardar"></div>
   <div id="div_erros_login"></div>
@@ -124,24 +125,11 @@
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
+      finalizarAguardar()
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
     }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
 
     // Enviando o valor da nova input web-data-viz\src\routes\usuarios.js
     fetch("/usuarios/cadastrar", {
@@ -171,7 +159,8 @@
           }, "2000");
 
           limparFormulario();
-          finalizarAguardar();
+          setTimeout(finalizarAguardar(), 1000)
+          
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
@@ -204,7 +193,7 @@
   //     });
   // }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+    function sumirMensagem() {
+      cardErro.style.display = "none";
+    }
 </script>

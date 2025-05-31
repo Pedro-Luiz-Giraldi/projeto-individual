@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="corpo cadastroLogin">
+    <div class="cadastroLogin">
         <div class="card">
             <div class="campo">
                 <label for="email_input">Email:</label>
@@ -42,14 +42,14 @@
                 <input type="text" id="senha_input">
             </div>
             <button class="botao" id="btnCadastroLogin" onclick="entrar()">Login</button>
-
+            
             <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
+            <div id="cardErro">
+                <div id="mensagem_erro"></div>
+            </div>
         </div>
     </div>
 
-    <div id="cardErro">
-        <div id="mensagem_erro"></div>
-    </div>
 
 
     <div id="div_erros_login"></div>
@@ -78,7 +78,7 @@
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            sumirMensagem()
         }
 
         console.log("FORM LOGIN: ", emailVar);

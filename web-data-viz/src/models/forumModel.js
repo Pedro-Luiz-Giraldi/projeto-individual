@@ -7,7 +7,7 @@ function exibir(filtro) {
         `;
     } else {
         var instrucao = `
-            SELECT * FROM forum WHERE categoria = ${filtro};
+            SELECT * FROM forum WHERE categoria = '${filtro}';
         `;
     }
 

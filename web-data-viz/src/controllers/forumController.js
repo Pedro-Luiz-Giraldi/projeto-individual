@@ -19,7 +19,7 @@ function salvar(req, res) {
     if (comentario == undefined || 
         comentario == '' || 
         categoria == undefined || 
-        categoria == '#' ||
+        categoria == '' ||
         usuario == undefined ||
         usuario == '' ) {
         res.status(400).send("Seu comentário ou categoria está indefinida!");

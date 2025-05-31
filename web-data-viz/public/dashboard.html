@@ -1,158 +1,172 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/funcoes.js"></script>
+  <script src="js/sessao.js"></script>
+
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body onload="obterDados()"> <!-- Chamando a função obterDados ao carregar a página -->
-  
-<!-- Título para o gráfico de linhas -->
-<div class="header">
-     <div class="navbar">
-         <button class="botao" onclick="headerLinks('inicio')">Início</button>
-         <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
-         <button class="botao" onclick="headerLinks('login')">Login</button>
-         <button class="botao" onclick="headerLinks('forum')">Fórum</button>
-         <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
-     </div>
- </div>
 
-<div class="dashboard">
-  <div id="popularidade">
-    <h1>Popularidade em Lordran</h1>
-    <canvas id="graf_npcFavorito"></canvas>
+<body onload="obterDados(), validarSessao('dashboard')"> <!-- Chamando a função obterDados ao carregar a página -->
+
+  <!-- Título para o gráfico de linhas -->
+  <div class="header">
+    <div class="navbar">
+      <button class="botao" onclick="headerLinks('inicio')">Início</button>
+      <button class="botao" onclick="headerLinks('cadastro')">Cadastro</button>
+      <button class="botao" onclick="headerLinks('login')">Login</button>
+      <button class="botao" onclick="headerLinks('forum')">Fórum</button>
+      <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
+    </div>
   </div>
-</div>
 
+  <div id="cardErroLogin">
+    <div id="mensagem_erro_login" class="card">
+      <img src="https://i.imgur.com/MbjMPr6.gif">
+    </div>
+  </div>
+
+  <div class="dashboard" id="dashboard">
+    <div id="popularidade">
+      <h1>Popularidade em Lordran</h1>
+      <canvas id="graf_npcFavorito"></canvas>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h4>SPTECH - Pedro Luis Santos Giraldi - 2025</h4>
+  </div>
 </body>
+
 </html>
 <script>
+  cardErroLogin.style.display = 'none'
+  // Função chamada ao carregar a página para obter e processar os dados
+  function obterDados() {
+    // Aqui seria a função que obteria os dados do banco de dados
+    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
 
-// Função chamada ao carregar a página para obter e processar os dados
-function obterDados(){
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
- 
-  fetch('/graficos/obterNpc')
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(data){
-      console.log(data);
-    plotarGraficoPizza(data);
-    // plotarGraficoBarra(data);
+    fetch('/graficos/obterNpc')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        plotarGraficoPizza(data);
+        // plotarGraficoBarra(data);
 
-    
-  })
-  .catch(function(err){
-    console.log(err);
-  })
 
-  // Chamando a função para plotar o gráfico de linha com os dados
-//   plotarGraficoPizza(dados);
-  // Chamando a função para plotar o gráfico de barra com os dados
-//   plotarGraficoBarra(dados)
-}
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
 
-// Função para plotar o gráfico de linha
-function plotarGraficoPizza(dados){
-  
-//   // Separando os rótulos (labels) e os dados dos votos
-  var votos = {
-    sol: 0,
-    sie: 0,
-    lau: 0,
-    and: 0,
-    pat: 0
-  };
-//   var jogadores = [];
-
-//   // Preenchendo os arrays com os dados
-  for(var i = 0; i < dados.length; i++){
-      console.log(dados[i].fav_npc);  
-    
-    if (dados[i].fav_npc == 'Solaire') {
-        votos.sol++
-    } else if (dados[i].fav_npc == 'Siegmeyer') {
-        votos.sie++
-    } else if (dados[i].fav_npc == 'Laurentius') {
-        votos.lau++
-    } else if (dados[i].fav_npc == 'Andre') {
-        votos.and++
-    } else if (dados[i].fav_npc == 'Patches') {
-        votos.pat++
-    } 
+    // Chamando a função para plotar o gráfico de linha com os dados
+    //   plotarGraficoPizza(dados);
+    // Chamando a função para plotar o gráfico de barra com os dados
+    //   plotarGraficoBarra(dados)
   }
 
-  // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('graf_npcFavorito').getContext('2d');
-  // Criando o gráfico de linha usando o Chart.js
-  var myChart = new Chart(ctx, {
+  // Função para plotar o gráfico de linha
+  function plotarGraficoPizza(dados) {
+
+    //   // Separando os rótulos (labels) e os dados dos votos
+    var votos = {
+      sol: 0,
+      sie: 0,
+      lau: 0,
+      and: 0,
+      pat: 0
+    };
+    //   var jogadores = [];
+
+    //   // Preenchendo os arrays com os dados
+    for (var i = 0; i < dados.length; i++) {
+      console.log(dados[i].fav_npc);
+
+      if (dados[i].fav_npc == 'Solaire') {
+        votos.sol++
+      } else if (dados[i].fav_npc == 'Siegmeyer') {
+        votos.sie++
+      } else if (dados[i].fav_npc == 'Laurentius') {
+        votos.lau++
+      } else if (dados[i].fav_npc == 'Andre') {
+        votos.and++
+      } else if (dados[i].fav_npc == 'Patches') {
+        votos.pat++
+      }
+    }
+
+    // Capturando o elemento canvas pelo id 
+    var ctx = document.getElementById('graf_npcFavorito').getContext('2d');
+    // Criando o gráfico de linha usando o Chart.js
+    var myChart = new Chart(ctx, {
       type: 'pie', // Tipo de gráfico: linha
       data: { // Dados para o gráfico
-          labels: [
-                'Solaire',
-                'Siegmeyer',
-                'Laurentius',
-                'Andre',
-                'Patches'
-            ],
-                 // Rótulos no eixo X
-          datasets: [{ 
-              label: 'Votos', // Nome do conjunto de dados
-              data: [votos.sol, votos.sie, votos.lau, votos.and, votos.pat], // Dados dos votos
-              backgroundColor: [
-                  'rgb(255, 255, 0)',
-                  'rgb(130, 130, 130)',
-                  'rgb(255, 106, 0)',
-                  'rgb(12, 117, 0)',
-                  'rgb(43, 46, 16)' // Cor de fundo das linhas
-              ],
-              borderColor: [
-                  'rgba(0, 0, 0, 0)', // Cor da borda das linhas
-              ],
-              borderWidth: 1 // Largura da borda das linhas
-          }]
+        labels: [
+          'Solaire',
+          'Siegmeyer',
+          'Laurentius',
+          'Andre',
+          'Patches'
+        ],
+        // Rótulos no eixo X
+        datasets: [{
+          label: 'Votos', // Nome do conjunto de dados
+          data: [votos.sol, votos.sie, votos.lau, votos.and, votos.pat], // Dados dos votos
+          backgroundColor: [
+            'rgb(255, 255, 0)',
+            'rgb(130, 130, 130)',
+            'rgb(255, 106, 0)',
+            'rgb(12, 117, 0)',
+            'rgb(110, 62, 21)' // Cor de fundo das linhas
+          ],
+          borderColor: [
+            'rgba(0, 0, 0, 0)', // Cor da borda das linhas
+          ],
+          borderWidth: 1 // Largura da borda das linhas
+        }]
       },
-  });
-} 
-
-// Função para plotar o gráfico de barra
-function plotarGraficoBarra(dados){
-
-  var votos = [];
-  var jogadores = [];
-
-  // Preenchendo os arrays com os dados
-  for(var i = 0; i < dados.length; i++){
-    votos.push(dados[i].votos);
-    jogadores.push(dados[i].jogador);
+    });
   }
 
-  // Capturando o elemento canvas pelo id 
-  var ctx = document.getElementById('barra').getContext('2d');
-  // Criando o gráfico de barra usando o Chart.js
-  var myChart = new Chart(ctx, {
+  // Função para plotar o gráfico de barra
+  function plotarGraficoBarra(dados) {
+
+    var votos = [];
+    var jogadores = [];
+
+    // Preenchendo os arrays com os dados
+    for (var i = 0; i < dados.length; i++) {
+      votos.push(dados[i].votos);
+      jogadores.push(dados[i].jogador);
+    }
+
+    // Capturando o elemento canvas pelo id 
+    var ctx = document.getElementById('barra').getContext('2d');
+    // Criando o gráfico de barra usando o Chart.js
+    var myChart = new Chart(ctx, {
       type: 'bar', // Tipo de gráfico: barra
       data: { // Dados para o gráfico
-          labels: jogadores, // Rótulos no eixo X
-          datasets: [{
-              label: 'Votos', // Nome do conjunto de dados
-              data: votos, // Dados dos votos
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)', // Cor da borda das barras
-              ],
-              borderWidth: 1 // Largura da borda das barras
-          }]
+        labels: jogadores, // Rótulos no eixo X
+        datasets: [{
+          label: 'Votos', // Nome do conjunto de dados
+          data: votos, // Dados dos votos
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)', // Cor da borda das barras
+          ],
+          borderWidth: 1 // Largura da borda das barras
+        }]
       },
-  });
-}
+    });
+  }
 </script>
