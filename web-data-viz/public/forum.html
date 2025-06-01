@@ -20,7 +20,7 @@
             <button class="botao" onclick="headerLinks('dashboard')">Dashboard</button>
         </div>
     </div>
-    
+
     <div id="cardErroLogin">
         <div id="mensagem_erro_login" class="card">
             <img src="https://i.imgur.com/MbjMPr6.gif">
@@ -66,6 +66,7 @@
                 <option value="fashion">Fashion Souls</option>
             </select>
             <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
+            <input type="text" id="ipt_titulo" placeholder="Título">
             <textarea name="text" id="ipt_comentario"></textarea>
             <button onclick="salvarComentario()" class="botao" id="btnCadastroLogin">Enviar</button>
 
@@ -86,12 +87,14 @@
 
         var forum =
             [{
+                titulo: ipt_titulo.value,
                 comentario: ipt_comentario.value,
                 categoria: ipt_categoria.value,
             }]
         var usuario = sessionStorage.ID_USUARIO
 
         if (
+            forum[0].titulo == '' ||
             forum[0].comentario == '' ||
             forum[0].categoria == '' ||
             usuario == undefined
@@ -114,6 +117,7 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
+                tituloServer: forum[0].titulo,
                 comentarioServer: forum[0].comentario,
                 categoriaServer: forum[0].categoria,
                 usuarioServer: usuario
@@ -122,11 +126,9 @@
         })
             .then(function (resposta) {
                 if (resposta.ok) {
-                    console.log('to no resposta.ok');
+                    setTimeout(finalizarAguardar, 1000);
                     
                     limparFormulario();
-                    
-                    setTimeout(finalizarAguardar, 1000);
                     
                     setTimeout(filtrarComentarios, 1001);
                 } else {
@@ -161,17 +163,34 @@
 
     function exibirComentarios(data) {
         let div_comentario = document.getElementById("container_comentarios")
-
+        let comentarios = ''
+        let texto_comentario = ''
+        let letra = ''
+        
         for (let i = 0; i < data.length; i++) {
-            div_comentario.innerHTML += `<div class="comentario">
-                                        ${data[i].comentario}
+             
+            texto_comentario = ''
+            for (let j = 0; j < data[i].comentario.length; j++) { // adiciona quebra de linha no comentario
+                letra = data[i].comentario[j]
+                if (letra == '\n') {
+                    texto_comentario += '<br>'
+                }
+                texto_comentario += data[i].comentario[j]
+            }
+            
+            comentarios += `<div class="comentario">
+                                        <h3>${data[i].titulo} (${data[i].categoria}) - ${data[i].nome}</h3>
+                                        <br>
+                                        ${texto_comentario}
                                         </div>`
         }
-
+        div_comentario.innerHTML = comentarios
     }
 
     function limparFormulario() {
         document.getElementById('ipt_comentario').value = ''
+        document.getElementById('ipt_categoria').value = ''
+        document.getElementById('ipt_titulo').value = ''
     }
 
     function sumirMensagem() {

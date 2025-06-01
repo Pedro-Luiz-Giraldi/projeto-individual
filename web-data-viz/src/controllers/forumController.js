@@ -12,11 +12,14 @@ function exibir(req, res) {
 }
 
 function salvar(req, res) {
+    var titulo = req.body.tituloServer;
     var comentario = req.body.comentarioServer;
     var categoria = req.body.categoriaServer;
     var usuario = req.body.usuarioServer;
 
-    if (comentario == undefined || 
+    if (titulo == undefined || 
+        titulo == '' || 
+        comentario == undefined || 
         comentario == '' || 
         categoria == undefined || 
         categoria == '' ||
@@ -24,7 +27,7 @@ function salvar(req, res) {
         usuario == '' ) {
         res.status(400).send("Seu comentário ou categoria está indefinida!");
     } else {
-        forumModel.salvar(comentario, categoria, usuario).then(function(resposta){
+        forumModel.salvar(titulo, comentario, categoria, usuario).then(function(resposta){
             res.status(200).send("Comentário salvo com sucesso");
         }).catch(function(erro){
             res.status(500).json(erro.sqlMessage);

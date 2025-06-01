@@ -8,4 +8,9 @@ router.get("/obterNpc", function (req, res) {
     graficoController.obterNpc(req, res);
 });
 
+router.get("/obterCategoria", function (req, res) {
+    // função a ser chamada quando acessar /carros/listar
+    graficoController.obterCategoria(req, res);
+});
+
 module.exports = router;

@@ -12,6 +12,7 @@ create table usuario (
 
 create table forum (
 	id			int auto_increment,
+    titulo		varchar(50),
     comentario	varchar(1000),
     categoria	varchar(20),
     fkusuario		int,
@@ -22,6 +23,14 @@ create table forum (
 select * from usuario;
 select * from forum;
 
+select f.titulo, f.comentario, f.categoria, u.nome
+from forum f
+join usuario u 
+where f.fkusuario = u.id;
 
-truncate table forum;
-truncate table usuario;
+select categoria, count(categoria) qtd
+from forum
+group by categoria;
+
+-- truncate table forum;
+-- truncate table usuario;

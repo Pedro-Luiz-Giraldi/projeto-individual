@@ -33,9 +33,14 @@
   </div>
 
   <div class="dashboard" id="dashboard">
-    <div id="popularidade">
+    <div class="grafico" id="popularidade">
       <h1>Popularidade em Lordran</h1>
       <canvas id="graf_npcFavorito"></canvas>
+    </div>
+
+    <div>
+      <h1>Categorias mais Comentadas</h1>
+      <canvas id="graf_categoria" class="grafico"></canvas>
     </div>
   </div>
 
@@ -58,25 +63,35 @@
       })
       .then(function (data) {
         console.log(data);
-        plotarGraficoPizza(data);
+        plotarGraficoNpc(data);
         // plotarGraficoBarra(data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
 
-
+    fetch('/graficos/obterCategoria')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        plotarGraficoCategoria(data)
       })
       .catch(function (err) {
         console.log(err);
       })
 
     // Chamando a função para plotar o gráfico de linha com os dados
-    //   plotarGraficoPizza(dados);
+    //   plotarGraficoNpc(dados);
     // Chamando a função para plotar o gráfico de barra com os dados
     //   plotarGraficoBarra(dados)
   }
 
   // Função para plotar o gráfico de linha
-  function plotarGraficoPizza(dados) {
+  function plotarGraficoNpc(dados) {
 
-    //   // Separando os rótulos (labels) e os dados dos votos
+    // Separando os dados dos votos
     var votos = {
       sol: 0,
       sie: 0,
@@ -84,9 +99,9 @@
       and: 0,
       pat: 0
     };
-    //   var jogadores = [];
 
-    //   // Preenchendo os arrays com os dados
+
+    // Preenchendo o array com os dados
     for (var i = 0; i < dados.length; i++) {
       console.log(dados[i].fav_npc);
 
@@ -137,32 +152,35 @@
   }
 
   // Função para plotar o gráfico de barra
-  function plotarGraficoBarra(dados) {
+  function plotarGraficoCategoria(dados) {
 
-    var votos = [];
-    var jogadores = [];
+    var categoria = [];
+    var qtd = [];
 
     // Preenchendo os arrays com os dados
     for (var i = 0; i < dados.length; i++) {
-      votos.push(dados[i].votos);
-      jogadores.push(dados[i].jogador);
+      categoria.push(dados[i].categoria);
+      qtd.push(dados[i].qtd);
     }
 
     // Capturando o elemento canvas pelo id 
-    var ctx = document.getElementById('barra').getContext('2d');
+    var ctx = document.getElementById('graf_categoria').getContext('2d');
     // Criando o gráfico de barra usando o Chart.js
     var myChart = new Chart(ctx, {
-      type: 'bar', // Tipo de gráfico: barra
+      type: 'pie', // Tipo de gráfico: barra
       data: { // Dados para o gráfico
-        labels: jogadores, // Rótulos no eixo X
+        labels: categoria, // Rótulos no eixo X
         datasets: [{
           label: 'Votos', // Nome do conjunto de dados
-          data: votos, // Dados dos votos
+          data: qtd, // Dados dos votos
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
+            'rgba(0, 135, 0)',
+            'rgba(13, 186, 186)', // Cor de fundo das barras
+            'rgba(235, 235, 235)',
+            'rgba(255, 0, 0)'
           ],
           borderColor: [
-            'rgba(255, 99, 132, 1)', // Cor da borda das barras
+            'rgba(0, 0, 0, 0)', // Cor da borda das barras
           ],
           borderWidth: 1 // Largura da borda das barras
         }]
