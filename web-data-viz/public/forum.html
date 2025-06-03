@@ -32,15 +32,16 @@
 
 
         <div class="container_comentarios">
-            <select name="filto_comentarios" id="ipt_filtro">
-                <option value="*">Todos</option>
-                <option value="builds">Builds</option>
-                <option value="challangeruns">Challenge runs</option>
-                <option value="historia">História/Teorias</option>
-                <option value="fashion">Fashion Souls</option>
-            </select>
-
-            <button onclick="filtrarComentarios()">Filtrar</button>
+            <div class="linha">
+                <select name="filto_comentarios" id="ipt_filtro" class="botao">
+                    <option value="*">Todos</option>
+                    <option value="builds">Builds</option>
+                    <option value="challangeruns">Challenge runs</option>
+                    <option value="historia">História/Teorias</option>
+                    <option value="fashion">Fashion Souls</option>
+                </select>
+                <button onclick="filtrarComentarios()" id="btn_filtro" class="botao">Filtrar</button>
+            </div>
 
             <div id="container_comentarios">
                 <div class="comentario paragrafo">
@@ -57,17 +58,19 @@
             </div>
         </div>
         <div class="card escrever_forum">
-            <b>Escrever Mensagem</b>
-            <select name="categoria_comentario" id="ipt_categoria">
-                <option value="">Categoria</option>
-                <option value="builds">Builds</option>
-                <option value="challangeruns">Challenge runs</option>
-                <option value="historia">História/Teorias</option>
-                <option value="fashion">Fashion Souls</option>
-            </select>
+            <h3>Escrever Mensagem</h3>
+            <div class="linha">
+                <input type="text" id="ipt_titulo" placeholder="Título">
+                <select name="categoria_comentario" id="ipt_categoria" class="botao">
+                    <option value="">Categoria</option>
+                    <option value="builds">Builds</option>
+                    <option value="challangeruns">Challenge runs</option>
+                    <option value="historia">História/Teorias</option>
+                    <option value="fashion">Fashion Souls</option>
+                </select>
+            </div>
             <img id="div_aguardar" src="https://i.imgur.com/MbjMPr6.gif">
-            <input type="text" id="ipt_titulo" placeholder="Título">
-            <textarea name="text" id="ipt_comentario"></textarea>
+            <div name="text" id="ipt_comentario" contenteditable="true"></div>
             <button onclick="salvarComentario()" class="botao" id="btnCadastroLogin">Enviar</button>
 
             <div id="cardErro">
@@ -168,9 +171,10 @@
         let letra = ''
         
         for (let i = 0; i < data.length; i++) {
-             
+
+            // adiciona quebra de linha no comentario
             texto_comentario = ''
-            for (let j = 0; j < data[i].comentario.length; j++) { // adiciona quebra de linha no comentario
+            for (let j = 0; j < data[i].comentario.length; j++) { 
                 letra = data[i].comentario[j]
                 if (letra == '\n') {
                     texto_comentario += '<br>'

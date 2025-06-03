@@ -21,14 +21,6 @@ function validarSessao(pagina) {
             "É preciso logar! Redirecionando para o login..."
         setInterval(function(){window.location = "login.html"}, 3000)
     }
-
-    // var b_usuario = document.getElementById("b_usuario");
-
-    // if (email != null && nome != null) {
-    //     b_usuario.innerHTML = nome;
-    // } else {
-    //     window.location = "../login.html";
-    // }
 }
 
 function limparSessao() {
@@ -45,14 +37,30 @@ function aguardar() {
 function finalizarAguardar(texto) {
     var divAguardar = document.getElementById("div_aguardar");
     divAguardar.style.display = "none";
-
-    // var divErrosLogin = document.getElementById("div_erros_login");
-    // if (texto) {
-    //     divErrosLogin.style.display = "flex";
-    //     divErrosLogin.innerHTML = texto;
-    // }
 }
 
 function sumirMensagem() {
     cardErro.style.display = "none";
+}
+
+// header
+function headerLinks(btn) {
+    if (btn == 'pagInicial') {
+        document.getElementById('idx').scrollIntoView();
+    }
+    if (btn == 'inicio') {
+        location.href = "index.html"
+    }
+    if (btn == 'cadastro') {
+        location.href = "cadastro.html"
+    }
+    if (btn == 'login') {
+        location.href = "login.html"
+    }
+    if (btn == 'forum') {
+        location.href = "forum.html"
+    }
+    if (btn == 'dashboard') {
+        location.href = "dashboard.html"
+    }
 }
