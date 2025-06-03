@@ -148,6 +148,19 @@
           borderWidth: 1 // Largura da borda das linhas
         }]
       },
+      options: {
+        plugins: {  // 'legend' now within object 'plugins {}'
+          legend: {
+            labels: {
+              color: "white",  // not 'fontColor:' anymore
+              // fontSize: 18  // not 'fontSize:' anymore
+              font: {
+                size: 16 // 'size' now within object 'font {}'
+              }
+            }
+          }
+        }
+      }
     });
   }
 
@@ -162,8 +175,8 @@
       categoria.push(dados[i].categoria);
       qtd.push(dados[i].qtd);
     }
-
-    // Capturando o elemento canvas pelo id 
+    
+    // Capturando o elemento canvas pelo id   
     var ctx = document.getElementById('graf_categoria').getContext('2d');
     // Criando o gráfico de barra usando o Chart.js
     var myChart = new Chart(ctx, {
@@ -185,6 +198,19 @@
           borderWidth: 1 // Largura da borda das barras
         }]
       },
+      options: {
+        plugins: {  // 'legend' now within object 'plugins {}'
+          legend: {
+            labels: {
+              color: "white",  // not 'fontColor:' anymore
+              // fontSize: 18  // not 'fontSize:' anymore
+              font: {
+                size: 16 // 'size' now within object 'font {}'
+              }
+            }
+          }
+        }
+      }
     });
   }
 </script>

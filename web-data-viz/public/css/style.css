@@ -137,6 +137,11 @@
     text-indent: 70px;
 }
 
+/* INDEX V2 */
+
+/* FIM INDEX V  2 */
+
+
 /*  */
 .cadastroLogin {
     background-color: black;
@@ -305,7 +310,14 @@
 }
 
 .grafico {
-    
+    text-align: center;
+}
+
+#graf_npcFavorito {
+    height: 350px;
+}
+#graf_categoria {
+    height: 350px;
 }
 
 /* FIM BODY */
