@@ -5,7 +5,7 @@ create table usuario (
 	id			int auto_increment,
     nome	 	varchar(45),
     email		varchar(45),
-    senha		varchar(15),
+    senha		varchar(20),
     fav_npc		varchar(10),
     primary key (id)
 );
@@ -23,14 +23,12 @@ create table forum (
 select * from usuario;
 select * from forum;
 
-select f.titulo, f.comentario, f.categoria, u.nome
-from forum f
-join usuario u 
-where f.fkusuario = u.id;
+SELECT f.titulo, f.comentario, f.categoria, u.nome
+            FROM forum f
+            JOIN usuario u
+            WHERE f.fkusuario = u.id;
 
-select categoria, count(categoria) qtd
-from forum
-group by categoria;
-
+    
+-- drop table forum;
 -- truncate table forum;
 -- truncate table usuario;

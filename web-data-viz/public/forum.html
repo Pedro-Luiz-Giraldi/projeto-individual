@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="js\funcoes.js"></script>
-    <script src="js\sessao.js"></script>
+
     <title>Fórum</title>
+
+    <script src="js\sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="assets/icon/darksign.jpeg">
 </head>
 
 <body onload="filtrarComentarios(), validarSessao('forum')">
@@ -29,7 +32,7 @@
 
     <div class="corpo_forum" id="corpo_forum">
         <h1>Fórum</h1>
-
+        <img src="assets/imgs/mensagem.png" id="img_mensagem">
 
         <div class="container_comentarios">
             <div class="linha">
@@ -42,19 +45,7 @@
                 </select>
                 <button onclick="filtrarComentarios()" id="btn_filtro" class="botao">Filtrar</button>
             </div>
-
             <div id="container_comentarios">
-                <div class="comentario paragrafo">
-                    Dark Souls: Prepare to Die Edition, é o primeiro jogo da série dark souls, sendo lançado em 2011
-                    para
-                    PlayStation 3 e Xbox360, produzido pela Fromsoftware e sob direção de Hidetaka Miyazaki. O jogo
-                    segue o
-                    estilo de RPG de ação e foi um dos fundadores do gênero “Soulslike”, e se tornaria um dos jogos mais
-                    populares e importantes para o gênero. Desde o lançamento, Dark Souls foi reconhecido por sua
-                    ambientação em um mundo medieval sombrio, história misteriosa, design do mundo e, principalmente,
-                    por
-                    sua dificuldade
-                </div>
             </div>
         </div>
         <div class="card escrever_forum">
@@ -91,7 +82,7 @@
         var forum =
             [{
                 titulo: ipt_titulo.value,
-                comentario: ipt_comentario.value,
+                comentario: ipt_comentario.innerText,
                 categoria: ipt_categoria.value,
             }]
         var usuario = sessionStorage.ID_USUARIO
@@ -130,9 +121,9 @@
             .then(function (resposta) {
                 if (resposta.ok) {
                     setTimeout(finalizarAguardar, 1000);
-                    
+
                     limparFormulario();
-                    
+
                     setTimeout(filtrarComentarios, 1001);
                 } else {
                     throw "Houve um erro ao tentar postar comentario!";
@@ -169,21 +160,22 @@
         let comentarios = ''
         let texto_comentario = ''
         let letra = ''
-        
+
         for (let i = 0; i < data.length; i++) {
 
             // adiciona quebra de linha no comentario
             texto_comentario = ''
-            for (let j = 0; j < data[i].comentario.length; j++) { 
+            for (let j = 0; j < data[i].comentario.length; j++) {
                 letra = data[i].comentario[j]
                 if (letra == '\n') {
                     texto_comentario += '<br>'
                 }
                 texto_comentario += data[i].comentario[j]
             }
-            
+
             comentarios += `<div class="comentario">
                                         <h3>${data[i].titulo} (${data[i].categoria}) - ${data[i].nome}</h3>
+                                        -----------------------------------------------------------------------------------------------
                                         <br>
                                         ${texto_comentario}
                                         </div>`
@@ -192,7 +184,7 @@
     }
 
     function limparFormulario() {
-        document.getElementById('ipt_comentario').value = ''
+        document.getElementById('ipt_comentario').innerText = ''
         document.getElementById('ipt_categoria').value = ''
         document.getElementById('ipt_titulo').value = ''
     }

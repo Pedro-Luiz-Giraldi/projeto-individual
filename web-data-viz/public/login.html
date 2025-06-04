@@ -6,15 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>Login</title>
 
     <script src="./js/sessao.js"></script>
-    <script src="js\funcoes.js"></script>
-
 
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" href="./assets/icon/darksign.jpeg">
 </head>
 
 <body>
@@ -73,7 +70,7 @@
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Preencha todos os campos!";
             finalizarAguardar();
             return false;
         }
