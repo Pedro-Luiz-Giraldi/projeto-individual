@@ -89,8 +89,10 @@
 }
 
 .bg3 {
-    background-image: url(../assets/imgs/LostIzalith.webp);
+    background-image: url(../assets/imgs/oolacile.webp);
     background-size: cover;
+    background-position: bottom right;
+
 }
 
 .bg4 {
@@ -409,6 +411,7 @@
     border-width: 2px;
     border-radius: 12px;
     padding: 2%;
+    width: 20%;
 }
 
 #graf_npcFavorito {

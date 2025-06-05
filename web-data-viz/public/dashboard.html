@@ -9,7 +9,7 @@
 
   <script src="js/sessao.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="assets/icon/darksign.jpeg">
 </head>
@@ -35,18 +35,9 @@
 
   <div class="corpo_dashboard" id="dashboard">
     <div class="container_kpi">
-      <div class="kpi">
-        <h3>Total de Comentários:</h3>
-        asd
-      </div>
-      <div class="kpi">
-        <h3>Categoria mais Comentada:</h3>
-        asd
-      </div>
-      <div class="kpi">
-        <h3>Média de Comentários por Usuario:</h3>
-        asd
-      </div>
+      <div class="kpi" id="kpi_npc"></div>
+      <div class="kpi" id="kpi_comentarios"></div>
+      <div class="kpi" id="kpi_categoria"></div>
     </div>
     <div class="container_graficos">
       <div class="grafico">
@@ -78,9 +69,11 @@
         return response.json();
       })
       .then(function (data) {
+        console.log('dados NPC');
         console.log(data);
+
         plotarGraficoNpc(data);
-        // plotarGraficoBarra(data);
+        plotarKpiNpc(data)
       })
       .catch(function (err) {
         console.log(err);
@@ -91,23 +84,20 @@
         return response.json();
       })
       .then(function (data) {
+        console.log('dados categoria');
         console.log(data);
+
         plotarGraficoCategoria(data)
+        plotarKpiComentarios(data)
       })
       .catch(function (err) {
         console.log(err);
       })
 
-    // Chamando a função para plotar o gráfico de linha com os dados
-    //   plotarGraficoNpc(dados);
-    // Chamando a função para plotar o gráfico de barra com os dados
-    //   plotarGraficoBarra(dados)
   }
 
-  // Função para plotar o gráfico de linha
   function plotarGraficoNpc(dados) {
 
-    // Separando os dados dos votos
     var votos = {
       sol: 0,
       sie: 0,
@@ -116,11 +106,7 @@
       pat: 0
     };
 
-
-    // Preenchendo o array com os dados
     for (var i = 0; i < dados.length; i++) {
-      console.log(dados[i].fav_npc);
-
       if (dados[i].fav_npc == 'Solaire') {
         votos.sol++
       } else if (dados[i].fav_npc == 'Siegmeyer') {
@@ -180,7 +166,6 @@
     });
   }
 
-  // Função para plotar o gráfico de barra
   function plotarGraficoCategoria(dados) {
 
     var categoria = [];
@@ -191,7 +176,7 @@
       categoria.push(dados[i].categoria);
       qtd.push(dados[i].qtd);
     }
-    
+
     // Capturando o elemento canvas pelo id   
     var ctx = document.getElementById('graf_categoria').getContext('2d');
     // Criando o gráfico de barra usando o Chart.js
@@ -215,13 +200,12 @@
         }]
       },
       options: {
-        plugins: {  // 'legend' now within object 'plugins {}'
+        plugins: {
           legend: {
             labels: {
-              color: "white",  // not 'fontColor:' anymore
-              // fontSize: 18  // not 'fontSize:' anymore
+              color: "white",
               font: {
-                size: 16 // 'size' now within object 'font {}'
+                size: 16
               }
             }
           }
@@ -229,4 +213,91 @@
       }
     });
   }
+
+  function plotarKpiNpc(data) {
+    var votos = {
+      sol: 0,
+      sie: 0,
+      lau: 0,
+      and: 0,
+      pat: 0
+    };
+
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].fav_npc == 'Solaire') {
+        votos.sol++
+      } else if (data[i].fav_npc == 'Siegmeyer') {
+        votos.sie++
+      } else if (data[i].fav_npc == 'Laurentius') {
+        votos.lau++
+      } else if (data[i].fav_npc == 'Andre') {
+        votos.and++
+      } else if (data[i].fav_npc == 'Patches') {
+        votos.pat++
+      }
+    }
+
+    let maior = 0
+    let favorito = ''
+
+    if (votos.sol > maior) {
+      maior = votos.sol
+      favorito = 'Solaire'
+    }
+    if (votos.sie > maior) {
+      maior = votos.sie
+      favorito = 'Siegmeyer'
+    }
+    if (votos.lau > maior) {
+      maior = votos.lau
+      favorito = 'Laurentius'
+    }
+    if (votos.and > maior) {
+      maior = votos.and
+      favorito = 'Andre'
+    }
+    if (votos.pat > maior) {
+      maior = votos.pat
+      favorito = 'Patches'
+    }
+
+    kpi_npc.innerHTML = `
+      <h3>NPC Favorito:</h3>
+        ${favorito}
+    `
+  }
+
+  function plotarKpiComentarios(data) {
+    var categoria = [];
+    var qtd = [];
+
+    for (var i = 0; i < data.length; i++) {
+      categoria.push(data[i].categoria);
+      qtd.push(data[i].qtd);
+    }
+
+    let maior = 0
+    let idx_favorito = 0
+
+    let total_comentarios = 0
+
+    for (let i = 0; i < qtd.length; i++) {
+      if (qtd[i] > maior) {
+        maior = qtd[i]
+        idx_favorito = i
+      }
+      total_comentarios += qtd[i]
+    }
+
+    kpi_categoria.innerHTML = `
+      <h3>Categoria mais Comentada:</h3>
+        ${categoria[idx_favorito]}
+    `
+
+    kpi_comentarios.innerHTML = `
+        <h3>Total de Comentários:</h3>
+        ${total_comentarios}
+    `
+  }
+
 </script>
